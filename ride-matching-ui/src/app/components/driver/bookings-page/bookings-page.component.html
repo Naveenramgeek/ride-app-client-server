@@ -1,0 +1,8 @@
+<div class="container mt-4">
+    <div class="row">
+      <ng-container *ngFor="let booking of bookings">
+        <app-booking-card [booking]="booking" [rider]="getUserById(booking.riderId)"></app-booking-card>
+      </ng-container>
+    </div>
+  </div>
+  

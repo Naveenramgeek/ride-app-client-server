@@ -1,0 +1,56 @@
+<div class="container mt-4">
+    <h2>Find Rides</h2>
+  
+    <!-- Filter Form -->
+    <!-- <form
+      (ngSubmit)="filterRides(locationInput.value, dateInput.value, timeInput.value)"
+      class="row g-3 mb-4"
+    >
+      <div class="col-md-4">
+        <input
+          #locationInput
+          type="text"
+          class="form-control"
+          placeholder="Pickup or Drop Location"
+          required
+        />
+      </div>
+      <div class="col-md-3">
+        <input #dateInput type="date" class="form-control" required />
+      </div>
+      <div class="col-md-3">
+        <input #timeInput type="time" class="form-control" required />
+      </div>
+      <div class="col-md-2">
+        <button type="submit" class="btn btn-primary">Filter</button>
+      </div>
+    </form> -->
+  
+    <!-- Ride Cards -->
+    <div class="row">
+      <div class="col-md-4 mb-3" *ngFor="let ride of availableRides">
+        <div class="card">
+          <!-- <img
+            class="card-img-top"
+          /> -->
+          <div class="card-body">
+            <p class="card-text">
+              <strong>Pickup:</strong> {{ ride.pickupLocation }} <br />
+              <strong>Drop:</strong> {{ ride.dropLocation }} <br />
+              <strong>Vehicle:</strong> {{ ride.vehicle.vehicleModel }} <br />
+              <strong>Seats Available:</strong> {{ ride.availableSeats }} <br />
+              <strong>Price/Seat:</strong> ${{ ride.pricePerPassenger }} <br />
+              <strong>Date & Time:</strong> {{convertToLocalTimezone(ride.date)}}
+            </p>
+            <button class="btn btn-info" (click)="viewRideDetails(ride)">
+              View Details
+            </button>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="!availableRides || availableRides.length <= 0" class="empty-rides">
+        <p class="no-rides-warning">There is no rides to display</p>
+      </div>
+    </div>
+  </div>
+  

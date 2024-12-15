@@ -1,0 +1,46 @@
+<div class="container mt-4">
+    <h2>Ratings & Feedback</h2>
+  
+    <div *ngFor="let ride of rides" class="ride-section">
+      <h3>Ride ID: {{ ride.rideId }}</h3>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Rider ID</th>
+            <th>Ratings</th>
+            <th>Feedback</th>
+            <th>Driver Response</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let feedback of ride.ratingsFeedback">
+            <td>{{ feedback.riderId }}</td>
+            <td>{{ feedback.ratings }} / 5</td>
+            <td>{{ feedback.feedback }}</td>
+            <td>
+              <div *ngIf="feedback.response; else responseForm">
+                <strong>Response:</strong> {{ feedback.response }}
+              </div>
+              <ng-template #responseForm>
+                <form
+                  (ngSubmit)="saveResponse(ride.rideId, feedback.riderId, feedbackResponse.value)"
+                >
+                  <div class="input-group">
+                    <input
+                      #feedbackResponse
+                      type="text"
+                      class="form-control"
+                      placeholder="Write your response..."
+                      required
+                    />
+                    <button type="submit" class="btn btn-primary">Save</button>
+                  </div>
+                </form>
+              </ng-template>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

@@ -1,0 +1,71 @@
+<div class="signup-container">
+    <h2>Driver Signup</h2>
+  
+    <!-- Step 1: Basic Information -->
+    <div *ngIf="currentStep === 1">
+      <app-basic-details [useralreadyExixts]="useralreadyExixts"  [userData]="driver"></app-basic-details>
+      <button class="btn btn-primary mt-3" (click)="goToBankDetails()">Next</button>
+    </div>
+  
+    <!-- Step 2: License and Bank Details -->
+    <div *ngIf="currentStep === 2">
+      <h3>Driver License and Bank Details</h3>
+      <div class="form-group">
+        <label for="licenseInfo">License Info</label>
+        <input id="licenseInfo" [(ngModel)]="driver.licenseInfo" class="form-control" type="text" required />
+      </div>
+      <h4>Bank Details</h4>
+      <div class="form-group">
+        <label for="recipientName">Recipient Name</label>
+        <input id="recipientName" [(ngModel)]="driver.bankDetails.recipientName" class="form-control" type="text" required />
+      </div>
+      <div class="form-group">
+        <label for="accountNumber">Account Number</label>
+        <input id="accountNumber" [(ngModel)]="driver.bankDetails.accountNumber" class="form-control" type="number" required />
+      </div>
+      <div class="form-group">
+        <label for="routingNumber">Routing Number</label>
+        <input id="routingNumber" [(ngModel)]="driver.bankDetails.routingNumber" class="form-control" type="text" required />
+      </div>
+      <div class="button-group">
+        <button class="btn btn-secondary" (click)="previousStep()">Back</button>
+        <button class="btn btn-primary" (click)="nextStep()">Next</button>
+      </div>
+    </div>
+  
+    <!-- Step 3: Vehicle Details -->
+    <div *ngIf="currentStep === 3">
+      <h3>Vehicle Details</h3>
+      <div >
+        <div class="form-group">
+          <label for="vehicleNo">Vehicle Number</label>
+          <input id="vehicleNo" [(ngModel)]="driver.vehicles.vehicleNo" class="form-control" type="text" required />
+        </div>
+        <div class="form-group">
+          <label for="vehicleModel">Vehicle Model</label>
+          <input id="vehicleModel" [(ngModel)]="driver.vehicles.vehicleModel" class="form-control" type="text" required />
+        </div>
+        <div class="form-group">
+          <label for="color">Color</label>
+          <input id="color" [(ngModel)]="driver.vehicles.color" class="form-control" type="text" required />
+        </div>
+        <div class="form-group">
+          <label for="year">Year</label>
+          <input id="year" [(ngModel)]="driver.vehicles.year" class="form-control" type="number" required />
+        </div>
+        <div class="form-group">
+          <label for="seating">Seating Capacity</label>
+          <input id="seating" [(ngModel)]="driver.vehicles.seating" class="form-control" type="number" required />
+        </div>
+        <div class="form-group">
+          <label for="seating">Upload Vehicle Image</label>
+          <input type="file" #vehicleImageInput (change)="onCarPictureUpload($event)" />
+        </div>
+      </div>
+      <div class="button-group">
+        <button class="btn btn-secondary" (click)="previousStep()">Back</button>
+        <button class="btn btn-success" (click)="submit()">Submit</button>
+      </div>
+    </div>
+  </div>
+  

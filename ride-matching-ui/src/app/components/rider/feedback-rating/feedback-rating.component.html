@@ -1,0 +1,84 @@
+<div class="container mt-4">
+    <h2>Ratings & Reviews</h2>
+  
+    <!-- Completed Rides -->
+    <div class="row">
+      <div class="col-md-4 mb-3" *ngFor="let ride of completedRides">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Driver: {{ ride.driverName }}</h5>
+            <p>
+              <strong>Pickup:</strong> {{ ride.pickupLocation }} <br />
+              <strong>Drop:</strong> {{ ride.dropLocation }} <br />
+              <strong>Date:</strong> {{ ride.date | date: 'short' }} <br />
+              <strong>Rating:</strong>
+              <span *ngIf="hasFeedback(ride)">
+                {{ getFeedback(ride)?.ratings }} / 5
+              </span>
+              <span *ngIf="!hasFeedback(ride)">Not Rated</span> <br />
+              <strong>Feedback:</strong>
+              <span *ngIf="hasFeedback(ride)">
+                {{ getFeedback(ride)?.feedback }}
+              </span>
+              <span *ngIf="!hasFeedback(ride)">No Feedback Provided</span>
+            </p>
+            <button
+              class="btn btn-primary"
+              *ngIf="!hasFeedback(ride)"
+              (click)="leaveFeedback(ride)"
+            >
+              Leave Feedback
+            </button>
+            <button
+              class="btn btn-secondary"
+              *ngIf="hasFeedback(ride)"
+              (click)="leaveFeedback(ride)"
+            >
+              Update Feedback
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div *ngIf="selectedRide" class="modal-overlay">
+        <div class="modal-container">
+          <h3>Leave Feedback for {{ selectedRide?.driverName }}</h3>
+          <form (ngSubmit)="saveFeedback(rating.value, feedback.value)">
+            <div class="mb-3">
+              <label for="rating" class="form-label">Rating</label>
+              <input
+                id="rating"
+                #rating
+                type="text"
+                class="form-control"
+                pattern="^([0-4](\.\d{1})?|5(\.0)?)$"
+                title="Rating must be a number between 0 and 5 with up to 1 decimal place"
+                placeholder="Enter rating (e.g., 4.5)"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="feedback" class="form-label">Feedback</label>
+              <textarea
+                id="feedback"
+                class="form-control"
+                #feedback
+                rows="3"
+                placeholder="Enter your feedback"
+                required
+              ></textarea>
+            </div>
+            <div class="modal-actions">
+              <button type="submit" class="btn btn-success">Save</button>
+              <button type="button" class="btn btn-secondary" (click)="closeFeedbackModal()">
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      
+      
+  </div>
+  

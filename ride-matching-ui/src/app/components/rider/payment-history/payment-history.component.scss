@@ -1,0 +1,80 @@
+.container {
+    h2 {
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+  
+    .status-filters {
+      display: flex;
+      gap: 10px;
+  
+      .btn {
+        border: 1px solid #ddd;
+        background-color: #f9f9f9;
+        color: #333;
+        padding: 5px 15px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+  
+        &.active {
+          background-color: #007bff;
+          color: #fff;
+          border-color: #007bff;
+        }
+  
+        &:hover {
+          background-color: #007bff;
+          color: #fff;
+        }
+      }
+    }
+  
+    .sort-options {
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+  
+      label {
+        margin-right: 10px;
+      }
+  
+      .form-select {
+        width: 200px;
+      }
+    }
+  
+    .payment-card {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: box-shadow 0.3s ease;
+  
+      &:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+      }
+  
+      .card-body {
+        p {
+          font-size: 0.95rem;
+  
+          strong {
+            font-weight: bold;
+          }
+        }
+  
+        .text-success {
+          color: green;
+        }
+  
+        .text-danger {
+          color: red;
+        }
+  
+        .text-warning {
+          color: orange;
+        }
+      }
+    }
+  }
+  

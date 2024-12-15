@@ -1,0 +1,103 @@
+<div class="container mt-4">
+    <!-- Upcoming Bookings -->
+    <div class="section">
+      <h3>Upcoming Bookings</h3>
+      <div class="row">
+        <div class="col-md-4" *ngFor="let booking of upcomingBookings">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Booking ID: {{ booking.bookingId }}</h5>
+              <p>
+                <strong>Pickup:</strong> {{ getRideDetails(booking.rideId)?.pickupLocation }} <br />
+                <strong>Drop:</strong> {{ getRideDetails(booking.rideId)?.dropLocation }} <br />
+                <strong>Date & Time:</strong>
+                {{ getRideDetails(booking.rideId)?.date | date: 'short' }} <br />
+                <strong>Seats:</strong> {{ booking.seatsBooked }} <br />
+                <strong>Total Price:</strong> ${{ booking.totalPrice }}
+              </p>
+              <!-- <button class="btn btn-primary" (click)="editBooking(booking)">Edit</button> -->
+              <button class="btn btn-danger" (click)="cancelBooking(booking.bookingId)">Cancel</button>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="!upcomingBookings || upcomingBookings.length <= 0" class="empty-rides">
+          <p class="no-rides-warning">There is no upcoming bookings to display</p>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Other Categories (Same as Above) -->
+    <!-- Completed Bookings -->
+    <div class="section">
+      <h3>Completed Bookings</h3>
+      <div class="row">
+        <div class="col-md-4" *ngFor="let booking of completedBookings">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Booking ID: {{ booking.bookingId }}</h5>
+              <p>
+                <strong>Pickup:</strong> {{ getRideDetails(booking.rideId)?.pickupLocation }} <br />
+                <strong>Drop:</strong> {{ getRideDetails(booking.rideId)?.dropLocation }} <br />
+                <strong>Date & Time:</strong>
+                {{ getRideDetails(booking.rideId)?.date | date: 'short' }} <br />
+                <strong>Seats:</strong> {{ booking.seatsBooked }} <br />
+                <strong>Total Price:</strong> ${{ booking.totalPrice }}
+              </p>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="!completedBookings || completedBookings.length <= 0" class="empty-rides">
+          <p class="no-rides-warning">There is no completed bookings to display</p>
+        </div>
+      </div>
+    </div>
+    <!-- Driver Cancelled Bookings -->
+    <div class="section">
+      <h3>Driver Cancelled Bookings</h3>
+      <div class="row">
+        <div class="col-md-4" *ngFor="let booking of driverCancelledBookings">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Booking ID: {{ booking.bookingId }}</h5>
+              <p>
+                <strong>Pickup:</strong> {{ getRideDetails(booking.rideId)?.pickupLocation }} <br />
+                <strong>Drop:</strong> {{ getRideDetails(booking.rideId)?.dropLocation }} <br />
+                <strong>Date & Time:</strong>
+                {{ getRideDetails(booking.rideId)?.date | date: 'short' }} <br />
+                <strong>Seats:</strong> {{ booking.seatsBooked }} <br />
+                <strong>Total Price:</strong> ${{ booking.totalPrice }}
+              </p>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="!driverCancelledBookings || driverCancelledBookings.length <= 0" class="empty-rides">
+          <p class="no-rides-warning">There is no Driver Cancelled Bookings to display</p>
+        </div>
+      </div>
+    </div>
+    <!-- Rider Cancelled Bookings -->
+    <div class="section">
+      <h3>Rider Cancelled Bookings</h3>
+      <div class="row">
+        <div class="col-md-4" *ngFor="let booking of riderCancelledBookings">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Booking ID: {{ booking.bookingId }}</h5>
+              <p>
+                <strong>Pickup:</strong> {{ getRideDetails(booking.rideId)?.pickupLocation }} <br />
+                <strong>Drop:</strong> {{ getRideDetails(booking.rideId)?.dropLocation }} <br />
+                <strong>Date & Time:</strong>
+                {{ getRideDetails(booking.rideId)?.date | date: 'short' }} <br />
+                <strong>Seats:</strong> {{ booking.seatsBooked }} <br />
+                <strong>Total Price:</strong> ${{ booking.totalPrice }}
+              </p>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="!riderCancelledBookings || riderCancelledBookings.length <= 0" class="empty-rides">
+          <p class="no-rides-warning">There is no Rider Cancelled Bookings to display</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  

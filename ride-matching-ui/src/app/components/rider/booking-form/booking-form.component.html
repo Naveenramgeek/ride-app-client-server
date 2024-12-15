@@ -1,0 +1,122 @@
+<div *ngIf="ride && passengers" class="overlay">
+    <div class="form-container">
+      <h3>Book Ride</h3>
+  
+      <!-- Non-editable Fields -->
+      <form>
+        <div class="mb-3">
+          <label class="form-label">Booking ID</label>
+          <input
+            type="text"
+            class="form-control"
+            [value]="bookingId"
+            readonly
+          />
+        </div>
+  
+        <div class="mb-3">
+          <label class="form-label">Pickup Location</label>
+          <input
+            type="text"
+            class="form-control"
+            [value]="ride.pickupLocation"
+            readonly
+          />
+        </div>
+  
+        <div class="mb-3">
+          <label class="form-label">Drop Location</label>
+          <input
+            type="text"
+            class="form-control"
+            [value]="ride.dropLocation"
+            readonly
+          />
+        </div>
+  
+        <div class="mb-3">
+          <label class="form-label">Date & Time</label>
+          <input
+            type="text"
+            class="form-control"
+            [value]="ride.date | date: 'short'"
+            readonly
+          />
+        </div>
+  
+        <div class="mb-3">
+          <label class="form-label">Price Per Seat</label>
+          <input
+            type="text"
+            class="form-control"
+            [value]="'$' + ride.pricePerPassenger"
+            readonly
+          />
+        </div>
+  
+        <!-- Select Seats -->
+        <div class="mb-3">
+          <label class="form-label">Seats</label>
+          <select class="form-control" (change)="onSeatsChange($event)">
+            <option value="" disabled selected>Select Seats</option>
+            <option
+              *ngFor="let seat of [].constructor(availableSeats + bookingSeats); let i = index"
+              [value]="i + 1"
+            >
+              {{ i + 1 }}
+            </option>
+          </select>
+        </div>
+  
+        <!-- Passengers -->
+        <div class="mb-3">
+          <label class="form-label">Passengers</label>
+          <div *ngFor="let passenger of passengers; let i = index" class="passenger-item">
+            <input
+              type="text"
+              placeholder="Name"
+              class="form-control mb-2"
+              [(ngModel)]="passengers[i].name"
+              name="passenger-name-{{ i }}"
+            />
+            <input
+              type="text"
+              placeholder="Gender"
+              class="form-control mb-2"
+              [(ngModel)]="passengers[i].gender"
+              name="passenger-gender-{{ i }}"
+            />
+            <input
+              type="number"
+              placeholder="Age"
+              class="form-control"
+              [(ngModel)]="passengers[i].age"
+              name="passenger-age-{{ i }}"
+            />
+          </div>
+          <!-- <button
+            class="btn btn-secondary mt-2"
+            (click)="addPassenger()"
+          >
+            Add Passenger
+          </button> -->
+        </div>
+  
+        <!-- Actions -->
+        <div class="actions">
+          <button
+            type="button"
+            class="btn btn-success"
+            (click)="save()"
+            [disabled]="!selectedSeats"
+          >
+            Save Booking
+          </button>
+          <button type="button" class="btn btn-secondary" (click)="closeForm.emit()">
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  

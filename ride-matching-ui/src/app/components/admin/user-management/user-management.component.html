@@ -1,0 +1,83 @@
+<div class="container">
+    <h2 class="title">User Management</h2>
+  
+    <!-- Filter Section -->
+    <div class="filter-section">
+      <input
+        type="text"
+        placeholder="Search by Name"
+        [(ngModel)]="filters.name"
+        (input)="applyFilters()"
+        class="form-control"
+      />
+      <input
+        type="text"
+        placeholder="Search by User ID"
+        [(ngModel)]="filters.userId"
+        (input)="applyFilters()"
+        class="form-control"
+      />
+      <select [(ngModel)]="filters.role" (change)="applyFilters()" class="form-control">
+        <option value="">All Roles</option>
+        <option value="ADMIN">Admin</option>
+        <option value="DRIVER">Driver</option>
+        <option value="RIDER">Rider</option>
+      </select>
+    </div>
+  
+    <!-- Add User Button -->
+    <button class="btn btn-add" (click)="openDriverForm()">Add Driver</button>
+
+    <!-- Add User Button -->
+    <button class="btn btn-add" (click)="openRiderForm()">Add Rider</button>
+    <!-- Users Table -->
+    <table class="table table-striped mt-3">
+      <thead>
+        <tr>
+          <th>User ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of paginatedUsers">
+          <td *ngIf="user.firstName !== 'Admin'">{{ user.userId }}</td>
+          <td *ngIf="user.firstName !== 'Admin'">{{ user.firstName }} {{ user.lastName }}</td>
+          <td *ngIf="user.firstName !== 'Admin'">{{ user.email }}</td>
+          <td *ngIf="user.firstName !== 'Admin'">{{ user.role }}</td>
+          <td *ngIf="user.firstName !== 'Admin'">
+            <!-- <button class="btn btn-edit" (click)="updateUser(user)">Edit</button> -->
+            <button class="btn btn-delete" (click)="deleteUser(user.userId)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <!-- Pagination Controls -->
+    <div class="pagination-controls">
+      <button
+        class="btn btn-page"
+        [disabled]="currentPage === 1"
+        (click)="changePage(currentPage - 1)"
+      >
+        Previous
+      </button>
+      <span>Page {{ currentPage }} of {{ totalPages }}</span>
+      <button
+        class="btn btn-page"
+        [disabled]="currentPage === totalPages"
+        (click)="changePage(currentPage + 1)"
+      >
+        Next
+      </button>
+  
+      <select [(ngModel)]="itemsPerPage" (change)="changeItemsPerPage()" class="form-control">
+        <option [value]="5">5</option>
+        <option [value]="10">10</option>
+        <option [value]="20">20</option>
+      </select>
+    </div>
+  </div>
+  

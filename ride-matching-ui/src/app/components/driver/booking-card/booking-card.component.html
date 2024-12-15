@@ -1,0 +1,41 @@
+<div class="col-md-4 mb-3">
+    <div class="card">
+      <div class="card-header">
+        <strong>Booking ID:</strong> {{ booking.bookingId }}
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">Ride ID: {{ booking.rideId }}</h5>
+        <p class="card-text">
+          <strong>Seats Booked:</strong> {{ booking.seatsBooked }}<br />
+          <strong>Total Price:</strong> ${{ booking.totalPrice }}<br />
+        </p>
+        <div class="card-text">
+          <strong>Passengers:</strong>
+          <ul>
+            <li *ngFor="let passenger of booking.passengers">
+              {{ passenger.name }} ({{ passenger.gender }}, {{ passenger.age }}
+              years)
+            </li>
+          </ul>
+        </div>
+        <div class="card-text">
+          <strong>Rider Information:</strong>
+          <ul>
+            <li *ngIf="rider">
+              <strong>Name:</strong> {{ rider.firstName }} {{ rider.lastName }}
+            </li>
+            <li *ngIf="rider">
+              <strong>Email:</strong> {{ rider.email }}
+            </li>
+            <li *ngIf="rider">
+              <strong>Phone:</strong> {{ rider.phone }}
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="card-footer">
+        <strong>Status:</strong> {{ booking.bookingStatus }}
+      </div>
+    </div>
+  </div>
+  

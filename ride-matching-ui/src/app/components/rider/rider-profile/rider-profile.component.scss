@@ -1,0 +1,222 @@
+// Container styles
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa; // Light background for the entire page
+  border-radius: 10px;
+
+  .title {
+    text-align: center;
+    font-size: 2rem;
+    color: #007bff; // Blue accent color
+    margin-bottom: 30px;
+    font-weight: bold;
+  }
+
+  // Profile Section
+  .profile-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #ffffff; // White card background
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); // Subtle shadow for a card effect
+
+    .profile-picture {
+      flex: 0 0 180px;
+      text-align: center;
+
+      img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%; // Circular image
+        object-fit: cover;
+        border: 3px solid #007bff;
+        margin-bottom: 10px;
+      }
+
+      input {
+        display: block;
+        margin: 10px auto;
+        font-size: 14px;
+      }
+
+      .btn-upload {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 8px 15px;
+        border-radius: 5px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background-color: #0056b3;
+        }
+      }
+    }
+
+    .profile-info {
+      flex: 1;
+      margin-left: 20px;
+
+      h3 {
+        font-size: 1.5rem;
+        color: #333;
+        margin-bottom: 10px;
+        font-weight: bold;
+      }
+
+      p {
+        margin: 5px 0;
+        font-size: 14px;
+        color: #555;
+
+        strong {
+          color: #007bff;
+        }
+      }
+
+      .btn-edit {
+        background-color: #28a745;
+        color: white;
+        border: none;
+        padding: 8px 15px;
+        border-radius: 5px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background-color: #218838;
+        }
+      }
+    }
+  }
+
+  // Card Details Section
+  .card-details {
+    margin-top: 30px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+    h3 {
+      font-size: 1.5rem;
+      color: #007bff;
+      margin-bottom: 20px;
+    }
+
+    p {
+      margin: 5px 0;
+      font-size: 14px;
+      color: #555;
+
+      strong {
+        color: #007bff;
+      }
+    }
+
+    .btn-edit {
+      background-color: #ffc107;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 5px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: #e0a800;
+      }
+    }
+
+    .card-edit-form {
+      margin-top: 20px;
+
+      input {
+        width: 100%;
+        padding: 10px;
+        font-size: 14px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        margin-bottom: 15px;
+      }
+
+      .btn-save {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 8px 15px;
+        border-radius: 5px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background-color: #0056b3;
+        }
+      }
+
+      .btn-cancel {
+        background-color: #ff4d4d;
+        color: white;
+        border: none;
+        padding: 8px 15px;
+        border-radius: 5px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background-color: #d11a2a;
+        }
+      }
+    }
+  }
+
+  // General Button Styles
+  .btn {
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-size: 14px;
+
+    &-edit {
+      background-color: #ffc107;
+      color: white;
+      border: none;
+
+      &:hover {
+        background-color: #e0a800;
+      }
+    }
+
+    &-save {
+      background-color: #007bff;
+      color: white;
+      border: none;
+
+      &:hover {
+        background-color: #0056b3;
+      }
+    }
+
+    &-cancel {
+      background-color: #ff4d4d;
+      color: white;
+      border: none;
+
+      &:hover {
+        background-color: #d11a2a;
+      }
+    }
+  }
+}

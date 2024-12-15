@@ -1,0 +1,20 @@
+<div *ngIf="loginflag" class="login-container">
+  <h2 *ngIf="user.role === 'RIDER'">Rider Login</h2>
+  <h2 *ngIf="user.role === 'DRIVER'">Driver Login</h2>
+  <h2 *ngIf="user.role === 'ADMIN'">Admin Login</h2>
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input id="email" [(ngModel)]="user.email" class="form-control" type="email" placeholder="Enter your email" />
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input id="password" [(ngModel)]="user.password" class="form-control" type="password" placeholder="Enter your password" />
+  </div>
+  <p *ngIf="error" class="warning">*{{errorMessage}}</p>
+  <button class="btn btn-primary mt-3" (click)="login()">Login</button>
+  <div class="forgot">
+    <button class="btn btn-primary mt-3" (click)="forgetPassword()">Forgot password</button>
+    <!-- <button class="btn btn-primary mt-3" (click)="forgetEmail()">Forgot Email</button> -->
+  </div>
+</div>
+<app-forgot-password *ngIf="!loginflag"></app-forgot-password>

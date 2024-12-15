@@ -1,0 +1,36 @@
+.container {
+    h2 {
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+  
+    .overview {
+      font-size: 1.2rem;
+      background: #f8f9fa;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+  
+    .filter-tabs {
+      button {
+        margin-right: 10px;
+      }
+      .active {
+        background-color: #007bff;
+        color: white;
+      }
+    }
+  
+    table {
+      margin-top: 20px;
+      th {
+        background-color: #f8f9fa;
+        text-align: center;
+      }
+      td {
+        text-align: center;
+      }
+    }
+  }
+  

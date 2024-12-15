@@ -1,0 +1,61 @@
+<nav *ngIf="showDriverNavbar" class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Ride</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <!-- <a class="nav-link active" href="/driver/dashboard">Dashboard</a> -->
+          <a class="nav-link" href="driver/rides">My Rides</a>
+          <a class="nav-link" href="driver/earnings">Earnings</a>
+          <!-- <a class="nav-link" href="driver/ratings&feedback">Ratings & Feedback</a> -->
+        </div>
+      </div>
+    </div>
+    <div class="d-flex">
+      <a class="nav-link" href="driver/profile">Profile</a>
+      <a class="dropdown-item" (click)="logout()">Logout</a>
+    </div>
+  </nav>
+
+  <nav *ngIf="showRiderNavbar" class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Ride</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <!-- <a class="nav-link active" href="/driver">Dashboard</a> -->
+          <a class="nav-link" href="rider/ride-details">Rides</a>
+          <a class="nav-link" href="rider/my-bookings">My Bookings</a>
+          <a class="nav-link" href="rider/payments">Payments</a>
+          <!-- <a class="nav-link" href="rider/feedback">Ratings & Feedback</a> -->
+        </div>
+      </div>
+    </div>
+    <div class="d-flex">
+      <a class="nav-link" href="rider/profile">Profile</a>
+      <a class="dropdown-item" (click)="logout()">Logout</a>
+    </div>
+  </nav>
+
+  <nav *ngIf="showAdminNavbar" class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Ride</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link" href="admin/dashboard">Dashboard</a>
+          <a class="nav-link" href="admin/usermanagement">User Management</a>
+          <a class="nav-link" href="admin/ridesmanagement">Rides Management</a>
+          <a class="nav-link" href="admin/bookingsmanagement">Bookings</a>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex">
+      <a class="dropdown-item" (click)="logout()">Logout</a>
+    </div>

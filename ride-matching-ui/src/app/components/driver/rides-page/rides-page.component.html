@@ -1,0 +1,127 @@
+<div class="container mt-4">
+  <div class="header">
+    <h2>Today's Rides</h2>
+    <button type="button" (click)="addNewRide()" class="btn post-ride btn-success">+ Post Ride</button>
+  </div>
+    <div class="row">
+      <div class="col-md-4" *ngFor="let ride of todayRides">
+        <div class="card mb-3">
+          <div class="card-header">
+            <strong>Ride ID: {{ ride.rideId }}</strong>
+            <a class="bookings-ling" [routerLink]="['/driver/bookings', ride.rideId]">View Bookings</a>
+          </div>
+          <div class="card-body">
+            <p class="card-text">
+              <strong>From:</strong> {{ ride.pickupLocation }}<br />
+              <strong>To:</strong> {{ ride.dropLocation }}<br />
+              <strong>Price Per Passenger:</strong> ${{ ride.pricePerPassenger }}<br />
+              <!-- <strong>Total Seats:</strong> {{ ride.totalSeats }}<br /> -->
+              <strong>Available Seats:</strong> {{ ride.availableSeats }}<br />
+              <strong>Car No:</strong> {{ ride.vehicle.vehicleNo }}<br />
+              <strong>Car Model:</strong> {{ ride.vehicle.vehicleModel }}<br />
+            </p>
+          </div>
+          <div class="card-footer">
+            <div class="left">
+                <strong>Date:</strong>  {{ convertToLocalTimezone(ride.date) }} <br />
+                <strong>Status:</strong> {{ ride.rideStatus }}
+            </div>
+            <div class="right">
+              <div *ngIf="!timePassed(ride.date)"  class="edit"
+                 (click)="completeRide(ride)">
+                 <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"/></svg>
+                </div>
+                <div *ngIf="timePassed(ride.date)" class="edit"
+                 (click)="openEditForm(ride)">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z"/></svg>
+                </div>
+                <div class="delete" (click)="deleteRide(ride)">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"/></svg>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="!todayRides || todayRides.length <= 0" class="empty-rides">
+        <p class="no-rides-warning">There is no Today's Rides to display</p>
+      </div>
+    </div>
+  
+    <h2>Upcoming Rides</h2>
+    <div class="row">
+      <div class="col-md-4" *ngFor="let ride of upcomingRides">
+        <div class="card mb-3">
+          <div class="card-header">
+            <strong>Ride ID: {{ ride.rideId }}</strong>
+            <a class="bookings-ling" [routerLink]="['/driver/bookings', ride.rideId]">View Bookings</a>
+          </div>
+          <div class="card-body">
+            <p class="card-text">
+              <strong>From:</strong> {{ ride.pickupLocation }}<br />
+              <strong>To:</strong> {{ ride.dropLocation }}<br />
+              <strong>Price Per Passenger:</strong> ${{ ride.pricePerPassenger }}<br />
+              <!-- <strong>Total Seats:</strong> {{ ride.totalSeats }}<br /> -->
+              <strong>Available Seats:</strong> {{ ride.availableSeats }}<br />
+              <strong>Car No:</strong> {{ ride.vehicle.vehicleNo }}<br />
+              <strong>Car Model:</strong> {{ ride.vehicle.vehicleModel }}<br />
+            </p>
+          </div>
+          <div class="card-footer">
+            <div class="left">
+              <strong>Date:</strong>  {{ convertToLocalTimezone(ride.date) }} <br />
+                <strong>Status:</strong> {{ ride.rideStatus }}
+            </div>
+            <div class="right">
+                <div class="edit" (click)="openEditForm(ride)">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z"/></svg>
+                </div>
+                <div class="delete" (click)="deleteRide(ride)">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"/></svg>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="!upcomingRides || upcomingRides.length <= 0" class="empty-rides">
+        <p class="no-rides-warning">There is no Upcoming Rides to display</p>
+      </div>
+    </div>
+  
+    <h2>Completed Rides</h2>
+    <div class="row">
+      <div class="col-md-4" *ngFor="let ride of completedRides">
+        <div class="card mb-3">
+          <div class="card-header">
+            <strong>Ride ID: {{ ride.rideId }}</strong>
+            <a class="bookings-ling" [routerLink]="['/driver/bookings', ride.rideId]">View Bookings</a>
+          </div>
+          <div class="card-body">
+            <p class="card-text">
+              <strong>From:</strong> {{ ride.pickupLocation }}<br />
+              <strong>To:</strong> {{ ride.dropLocation }}<br />
+              <strong>Price Per Passenger:</strong> ${{ ride.pricePerPassenger }}<br />
+              <strong>Car No:</strong> {{ ride.vehicle.vehicleNo }}<br />
+              <strong>Car Model:</strong> {{ ride.vehicle.vehicleModel }}<br />
+            </p>
+          </div>
+          <div class="card-footer">
+            <div class="left">
+              <strong>Date:</strong>  {{ convertToLocalTimezone(ride.date) }} <br />
+                <strong>Status:</strong> {{ ride.rideStatus }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="!completedRides || completedRides.length <= 0" class="empty-rides">
+        <p class="no-rides-warning">There is no Completed Rides to display</p>
+      </div>
+    </div>
+  </div>
+  
+  <app-add-edit-ride
+    *ngIf="showForm"
+    [ride]="currentRide"
+    [vehicles]="driver.vehicles"
+    (save)="saveRide($event)"
+    (close)="closeForm()"
+  ></app-add-edit-ride>

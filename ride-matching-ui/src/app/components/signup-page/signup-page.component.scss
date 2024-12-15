@@ -1,0 +1,115 @@
+/* Container Styling */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    background-color: #f9f9f9;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+    color: #222;
+    margin-bottom: 10px;
+  }
+  
+  p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 30px;
+  }
+  
+  /* Options Styling */
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    max-width: 600px;
+  }
+  
+  .option-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    background: #fff;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+  }
+  
+  .option-card:hover {
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .icon {
+    font-size: 2rem;
+    color: #6c63ff;
+  }
+  
+  .details {
+    flex-grow: 1;
+    margin-left: 20px;
+    text-align: left;
+  }
+  
+  .details h2 {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 5px;
+  }
+  
+  .details p {
+    font-size: 0.9rem;
+    color: #777;
+  }
+  
+  .tag {
+    font-size: 0.8rem;
+    color: #28a745;
+    background: #d4f5dc;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  /* Create Account Button */
+  .create-account {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #fff;
+    background: #28a745;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+  }
+  
+  .create-account:hover {
+    background: #218838;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .options {
+      flex-direction: column;
+    }
+  
+    .option-card {
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+    }
+  
+    .details {
+      margin-left: 0;
+    }
+  }
+  

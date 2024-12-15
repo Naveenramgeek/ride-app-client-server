@@ -1,0 +1,85 @@
+<div class="container mt-4">
+    <h2>Earnings</h2>
+  
+    <!-- Earnings Overview -->
+    <div class="overview mb-4">
+      <p><strong>Total Earnings:</strong> ${{ totalEarnings }}</p>
+      <p><strong>Pending Payments:</strong> {{ pendingPayments.length }}</p>
+    </div>
+  
+    <!-- Filter Tabs -->
+    <!-- <div class="filter-tabs mb-4">
+      <button
+        class="btn btn-outline-primary"
+        [class.active]="selectedFilter === 'daily'"
+        (click)="selectedFilter = 'daily'"
+      >
+        Daily
+      </button>
+      <button
+        class="btn btn-outline-primary"
+        [class.active]="selectedFilter === 'weekly'"
+        (click)="selectedFilter = 'weekly'"
+      >
+        Weekly
+      </button>
+      <button
+        class="btn btn-outline-primary"
+        [class.active]="selectedFilter === 'monthly'"
+        (click)="selectedFilter = 'monthly'"
+      >
+        Monthly
+      </button>
+    </div> -->
+  
+    <!-- Earnings Breakdown -->
+    <h3>Earnings</h3>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Ride ID</th>
+          <th>Booking ID</th>
+          <th>Driver Share</th>
+          <th>Admin Share</th>
+          <th>Payable Amount</th>
+          <th>Payment Date</th>
+          <th>Payment Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let payment of filteredEarnings">
+          <td>{{ payment.rideId }}</td>
+          <td>{{ payment.bookingId }}</td>
+          <td>${{ payment.driverShare }}</td>
+          <td>${{ payment.adminShare }}</td>
+          <td>${{ payment.payableAmount }}</td>
+          <td>{{ payment.paymentDate | date: 'short' }}</td>
+          <td>{{ payment.paymentStatus }}</td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <!-- Pending Payments -->
+    <h3>Pending Payments</h3>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Payment ID</th>
+          <th>Ride ID</th>
+          <th>Booking ID</th>
+          <th>Payable Amount</th>
+          <th>Payment Method</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let payment of pendingPayments">
+          <td>{{ payment.paymentId }}</td>
+          <td>{{ payment.rideId }}</td>
+          <td>{{ payment.bookingId }}</td>
+          <td>${{ payment.payableAmount }}</td>
+          <td>{{ payment.paymentMethod }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

@@ -1,0 +1,83 @@
+<div class="container">
+  <h2 class="title">Driver Profile</h2>
+
+  <!-- Profile Section -->
+  <div class="profile-section">
+    <div class="profile-picture">
+      <img
+        [src]="user.profilePictureUrl || 'assets/default-profile.png'"
+        alt="Profile Picture"
+      />
+      <input type="file" #fileInput (change)="onProfilePictureUpload($event)" />
+      <button class="btn-upload" (click)="uploadProfilePicture(fileInput)">
+        Upload
+      </button>
+    </div>
+    <div class="profile-info">
+      <h3>{{ user.firstName }} {{ user.lastName }}</h3>
+      <p><strong>Email:</strong> {{ user.email }}</p>
+      <p><strong>Phone:</strong> {{ user.phone }}</p>
+      <p><strong>License:</strong> {{ driver.licenseInfo }}</p>
+      <p><strong>Address:</strong> {{ user.address }}</p>
+    </div>
+  </div>
+
+  <!-- Vehicle Section -->
+  <h3>Vehicles</h3>
+  <div class="vehicle-cards">
+    <div class="card" *ngFor="let vehicle of vehicles; let i = index">
+      <img
+        [src]="vehicle.image || 'assets/default-vehicle.jpg'"
+        alt="{{ vehicle.vehicleModel }}"
+      />
+      <h4>{{ vehicle.vehicleModel }}</h4>
+      <p><strong>Vehicle No:</strong> {{ vehicle.vehicleNo }}</p>
+      <p><strong>Color:</strong> {{ vehicle.color }}</p>
+      <p><strong>Year:</strong> {{ vehicle.year }}</p>
+      <p><strong>Seating Capacity:</strong> {{ vehicle.seating }}</p>
+      <button class="btn-delete" (click)="deleteVehicle(i)">Delete Vehicle</button>
+    </div>
+  </div>
+  <button class="btn-add" (click)="showAddVehicleForm = !showAddVehicleForm">Add Vehicle</button>
+
+  <!-- Add Vehicle Form -->
+  <div class="add-vehicle-form" *ngIf="showAddVehicleForm">
+    <h4>Add New Vehicle</h4>
+    <input type="text" [(ngModel)]="newVehicle.vehicleModel" placeholder="Vehicle Model" />
+    <input type="text" [(ngModel)]="newVehicle.vehicleNo" placeholder="Vehicle No" />
+    <input type="text" [(ngModel)]="newVehicle.color" placeholder="Color" />
+    <input type="number" [(ngModel)]="newVehicle.year" placeholder="Year" />
+    <input type="number" [(ngModel)]="newVehicle.seating" placeholder="Seating Capacity" />
+    <input type="file" #vehicleImageInput (change)="onVehicleImageUpload($event)" />
+    <button class="btn-save" (click)="addVehicle()">Save</button>
+    <button class="btn-cancel" (click)="closeForm()">Cancel</button>
+  </div>
+
+  <!-- Password Update Section -->
+  <div class="password-section">
+    <h3>Update Password</h3>
+    <input type="password" [(ngModel)]="newPassword" placeholder="New Password" />
+    <input
+      type="password"
+      [(ngModel)]="confirmPassword"
+      placeholder="Confirm Password"
+    />
+    <button class="btn-save" (click)="updatePassword()">Update Password</button>
+  </div>
+
+  <!-- Driver Information -->
+  <!-- <div class="driver-info-section">
+    <h3>Driver Information</h3>
+    <p><strong>Balance:</strong> ${{ driver.balance }}</p>
+    <p><strong>Ratings:</strong> {{ driver.ratings }}</p>
+    <p><strong>License Info:</strong> {{ driver.licenseInfo }}</p>
+  </div> -->
+
+  <!-- Bank Details -->
+  <div class="bank-details-section">
+    <h3>Bank Details</h3>
+    <p><strong>Recipient Name:</strong> {{ driver.bankDetails.recipientName }}</p>
+    <p><strong>Account Number:</strong> {{ driver.bankDetails.accountNumber }}</p>
+    <p><strong>Routing Number:</strong> {{ driver.bankDetails.routingNumber }}</p>
+  </div>
+</div>

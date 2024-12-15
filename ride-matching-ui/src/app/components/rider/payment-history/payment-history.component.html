@@ -1,0 +1,81 @@
+<div class="container mt-4">
+    <h2>Payment History</h2>
+  
+    <!-- Status Filters -->
+    <div class="status-filters mb-3">
+      <button
+        class="btn"
+        [ngClass]="{ active: selectedStatus === 'ALL' }"
+        (click)="changeStatus('ALL')"
+      >
+        All
+      </button>
+      <button
+        class="btn"
+        [ngClass]="{ active: selectedStatus === 'SUCCESSFUL' }"
+        (click)="changeStatus('SUCCESSFUL')"
+      >
+        Successful
+      </button>
+      <button
+        class="btn"
+        [ngClass]="{ active: selectedStatus === 'FAILED' }"
+        (click)="changeStatus('FAILED')"
+      >
+        Failed
+      </button>
+      <button
+        class="btn"
+        [ngClass]="{ active: selectedStatus === 'PENDING' }"
+        (click)="changeStatus('PENDING')"
+      >
+        Pending
+      </button>
+    </div>
+  
+    <!-- Sorting Options -->
+    <div class="sort-options mb-3">
+      <label for="sortOption">Sort By:</label>
+      <select
+        id="sortOption"
+        class="form-select"
+        [(ngModel)]="sortOption"
+        (change)="changeSortOption(sortOption)"
+      >
+        <option value="DATE">Date</option>
+        <option value="PAYABLE_AMOUNT">Payable Amount</option>
+        <option value="PAYMENT_METHOD">Payment Method</option>
+      </select>
+    </div>
+  
+    <!-- Payment List -->
+    <div class="row">
+      <div class="col-md-4 mb-3" *ngFor="let payment of filteredPayments">
+        <div class="card payment-card">
+          <div class="card-body">
+            <h5 class="card-title">Payment ID: {{ payment.paymentId }}</h5>
+            <p>
+              <strong>Date:</strong> {{ payment.paymentDate | date: 'short' }} <br />
+              <strong>Ride ID:</strong> {{ payment.rideId }} <br />
+              <strong>Rider ID:</strong> {{ payment.riderId }} <br />
+              <!-- <strong>Driver Share:</strong> ${{ payment.driverShare }} <br />
+              <strong>Admin Share:</strong> ${{ payment.adminShare }} <br /> -->
+              <strong>Total Payable:</strong> ${{ payment.payableAmount }} <br />
+              <strong>Payment Method:</strong> {{ payment.paymentMethod }} <br />
+              <strong>Status:</strong>
+              <span
+                [ngClass]="{
+                  'text-success': payment.paymentStatus === 'SUCCESSFUL',
+                  'text-danger': payment.paymentStatus === 'FAILED',
+                  'text-warning': payment.paymentStatus === 'PENDING'
+                }"
+              >
+                {{ payment.paymentStatus }}
+              </span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

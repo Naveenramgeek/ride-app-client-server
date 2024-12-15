@@ -1,0 +1,124 @@
+<div class="basic-details-container">
+    <h3>Basic Information</h3>
+    <form #basicForm="ngForm" novalidate>
+      <!-- First Name -->
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input
+          id="firstName"
+          [(ngModel)]="userData.firstName"
+          name="firstName"
+          class="form-control"
+          type="text"
+          placeholder="Enter your first name"
+          required
+          minlength="1"
+        />
+        <div *ngIf="touched && basicForm.controls['firstName']?.invalid" class="text-danger">
+          First name is required and must be at least 1 character.
+        </div>
+      </div>
+  
+      <!-- Last Name -->
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input
+          id="lastName"
+          [(ngModel)]="userData.lastName"
+          name="lastName"
+          class="form-control"
+          type="text"
+          placeholder="Enter your last name"
+          required
+        />
+        <div *ngIf="touched && basicForm.controls['lastName']?.invalid" class="text-danger">
+          Last name is required.
+        </div>
+      </div>
+  
+      <!-- Email -->
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          id="email"
+          [(ngModel)]="userData.email"
+          name="email"
+          class="form-control"
+          type="email"
+          placeholder="Enter your email"
+          required
+          email
+        />
+        <div *ngIf="touched && basicForm.controls['email']?.invalid" class="text-danger">
+          Please enter a valid email address.
+        </div>
+        <div *ngIf="useralreadyExixts" class="text-danger">
+          User with this email already exists.
+        </div>
+      </div>
+  
+      <!-- Password -->
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          id="password"
+          [(ngModel)]="userData.password"
+          name="password"
+          class="form-control"
+          type="password"
+          placeholder="Enter your password"
+          required
+          minlength="6"
+        />
+        <div *ngIf="touched && basicForm.controls['password']?.invalid" class="text-danger">
+          Password is required and must be at least 6 characters.
+        </div>
+      </div>
+
+      <!-- Confirm Password -->
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          id="confirm_password"
+          [(ngModel)]="confirmPassword"
+          name="confirmPassword"
+          class="form-control"
+          type="password"
+          placeholder="Enter your password"
+          required
+        />
+        <div *ngIf="touched && confirmPassword !== userData.password" class="text-danger">
+          Passwords do not match.
+        </div>
+      </div>
+  
+      <!-- Phone Number -->
+      <div class="form-group">
+        <label for="phone">Phone</label>
+        <input
+          id="phone"
+          [(ngModel)]="userData.phone"
+          name="phone"
+          class="form-control"
+          type="tel"
+          pattern="[0-9]{10}"
+          placeholder="Enter your phone number"
+          required
+        />
+        <div *ngIf="touched && basicForm.controls['phone']?.invalid" class="text-danger">
+          Phone number must be exactly 10 digits.
+        </div>
+      </div>
+  
+      <!--Address --> 
+      <div class="form-group"> 
+        <label for="address">Address</label> 
+        <textarea id="address" [(ngModel)]="userData.address" name="address" class="form-control" rows="3" placeholder="Enter your address" required ></textarea> 
+        <div *ngIf="touched && basicForm.controls['address']?.invalid" class="text-danger">
+          Address is required.
+        </div>
+    </div>
+
+</form> 
+</div>
+  

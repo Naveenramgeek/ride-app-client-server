@@ -1,0 +1,35 @@
+<div class="signup-container">
+    <h2>Rider Signup</h2>
+  
+    <!-- Step 1: Basic Information -->
+    <div *ngIf="currentStep === 1">
+      <app-basic-details [useralreadyExixts]="useralreadyExixts" [userData]="rider"></app-basic-details>
+      <button class="btn btn-primary mt-3" (click)="goToBankDetails()">Next</button>
+    </div>
+  
+    <!-- Step 2: Card Details -->
+    <div *ngIf="currentStep === 2">
+      <h3>Card Details</h3>
+      <div class="form-group">
+        <label for="cardNumber">Card Number</label>
+        <input id="cardNumber" [(ngModel)]="rider.cardDetails.cardNumber" class="form-control" type="text" required />
+      </div>
+      <div class="form-group">
+        <label for="expiryDate">Expiry Date</label>
+        <input id="expiryDate" [(ngModel)]="rider.cardDetails.expiryDate" class="form-control" type="text" required />
+      </div>
+      <div class="form-group">
+        <label for="securityCode">Security Code</label>
+        <input id="securityCode" [(ngModel)]="rider.cardDetails.securityCode" class="form-control" type="number" required />
+      </div>
+      <div class="form-group">
+        <label for="cardHolderName">Cardholder Name</label>
+        <input id="cardHolderName" [(ngModel)]="rider.cardDetails.cardHolderName" class="form-control" type="text" required />
+      </div>
+      <div class="button-group">
+        <button class="btn btn-secondary" (click)="previousStep()">Back</button>
+        <button class="btn btn-success" (click)="submit()">Submit</button>
+      </div>
+    </div>
+  </div>
+  

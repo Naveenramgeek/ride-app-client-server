@@ -1,0 +1,126 @@
+<div class="container mt-5">
+  <h2 class="title text-center">Rider Profile</h2>
+
+  <!-- Profile Section -->
+  <div class="profile-section">
+    <div class="profile-picture">
+      <img
+        [src]="user.profilePictureUrl || 'assets/default-profile.png'"
+        alt="Profile Picture"
+      />
+      <input
+        type="file"
+        #fileInput
+        (change)="onProfilePictureUpload($event)"
+        class="form-control mt-2"
+      />
+      <button class="btn btn-upload mt-2" (click)="uploadProfilePicture(fileInput)">Upload</button>
+    </div>
+    <div class="profile-info">
+      <ng-container *ngIf="!editPersonalInfoMode">
+        <h3>{{ user.firstName }} {{ user.lastName }}</h3>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>Phone:</strong> {{ user.phone }}</p>
+        <p><strong>Address:</strong> {{ user.address }}</p>
+        <p><strong>ID Type:</strong> {{ user.proofOfIdentity?.idType }}</p>
+        <p><strong>ID Number:</strong> {{ user.proofOfIdentity?.idNumber }}</p>
+        <p><strong>Country Provided:</strong> {{ user.proofOfIdentity?.countryProvided }}</p>
+        <button class="btn btn-edit mt-2" (click)="editPersonalInfoMode = true">Edit Information</button>
+      </ng-container>
+
+      <ng-container *ngIf="editPersonalInfoMode">
+        <input
+          type="text"
+          [(ngModel)]="user.firstName"
+          placeholder="First Name"
+          class="form-control mb-2"
+        />
+        <input
+          type="text"
+          [(ngModel)]="user.lastName"
+          placeholder="Last Name"
+          class="form-control mb-2"
+        />
+        <input
+          type="email"
+          [(ngModel)]="user.email"
+          placeholder="Email"
+          class="form-control mb-2"
+        />
+        <input
+          type="text"
+          [(ngModel)]="user.phone"
+          placeholder="Phone"
+          class="form-control mb-2"
+        />
+        <input
+          type="text"
+          [(ngModel)]="user.address"
+          placeholder="Address"
+          class="form-control mb-2"
+        />
+        <input *ngIf="user.proofOfIdentity"
+          type="text"
+          [(ngModel)]="user.proofOfIdentity.idType"
+          placeholder="ID Type"
+          class="form-control mb-2"
+        />
+        <input *ngIf="user.proofOfIdentity"
+          type="text"
+          [(ngModel)]="user.proofOfIdentity.idNumber"
+          placeholder="ID Number"
+          class="form-control mb-2"
+        />
+        <input *ngIf="user.proofOfIdentity"
+          type="text"
+          [(ngModel)]="user.proofOfIdentity.countryProvided"
+          placeholder="Country"
+          class="form-control mb-2"
+        />
+        <button class="btn btn-save" (click)="savePersonalInfo()">Save</button>
+        <button class="btn btn-cancel" (click)="cancelPersonalInfoEdit()">Cancel</button>
+      </ng-container>
+    </div>
+  </div>
+
+  <!-- Card Details Section -->
+  <div class="card-details mt-4">
+    <h3>Card Details</h3>
+    <ng-container *ngIf="!editCardMode">
+      <p><strong>Card Holder Name:</strong> {{ rider.cardDetails.cardHolderName }}</p>
+      <p><strong>Card Number:</strong> **** **** **** {{ rider.cardDetails.cardNumber % 10000 }}</p>
+      <p><strong>Expiry Date:</strong> {{ rider.cardDetails.expiryDate }}</p>
+      <p><strong>Security Code:</strong> ***</p>
+      <button class="btn btn-edit" (click)="editCardMode = true">Edit Card Details</button>
+    </ng-container>
+
+    <ng-container *ngIf="editCardMode">
+      <input
+        type="text"
+        [(ngModel)]="rider.cardDetails.cardHolderName"
+        placeholder="Card Holder Name"
+        class="form-control mb-2"
+      />
+      <input
+        type="number"
+        [(ngModel)]="rider.cardDetails.cardNumber"
+        placeholder="Card Number"
+        class="form-control mb-2"
+      />
+      <input
+        type="text"
+        [(ngModel)]="rider.cardDetails.expiryDate"
+        placeholder="Expiry Date (MM/YY)"
+        class="form-control mb-2"
+      />
+      <input
+        type="number"
+        [(ngModel)]="rider.cardDetails.securityCode"
+        placeholder="Security Code"
+        class="form-control mb-2"
+      />
+      <button class="btn btn-save" (click)="saveCardDetails()">Save</button>
+      <button class="btn btn-cancel" (click)="cancelCardEdit()">Cancel</button>
+    </ng-container>
+  </div>
+</div>

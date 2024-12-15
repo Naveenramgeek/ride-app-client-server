@@ -1,0 +1,55 @@
+<div class="container mt-4">
+    <h2 class="page-title">Ride Details</h2>
+  
+    <div *ngIf="ride && driver" class="ride-details-card">
+      <!-- Left Column: Vehicle Image -->
+      <div class="ride-details-image">
+        <img
+        [src]="vehicle?.image || 'assets/default-vehicle.jpg'"
+        alt="{{ vehicle?.vehicleModel }}"
+      />
+      </div>
+  
+      <!-- Right Column: Details -->
+      <div class="ride-details-info">
+        <!-- Driver Details -->
+        <h5>Driver: {{ driver.firstName }} {{ driver.lastName }}</h5>
+        <p>
+          <strong>Phone:</strong> {{ driver.phone }}<br />
+          <strong>Phone:</strong> {{ driver.email }}
+        </p>
+  
+        <!-- Ride Details -->
+        <h6>Ride Information</h6>
+        <p>
+          <strong>Pickup Location:</strong> {{ ride.pickupLocation }} <br />
+          <strong>Drop Location:</strong> {{ ride.dropLocation }} <br />
+          <strong>Start Date & Time:</strong> {{ ride.date | date: 'short' }} <br />
+          <strong>Estimated Arrival:</strong> {{ ride.estimatedDate | date: 'short' }} <br />
+          <strong>Available Seats:</strong> {{ ride.availableSeats }} <br />
+          <strong>Price Per Seat:</strong> ${{ ride.pricePerPassenger }}
+        </p>
+  
+        <!-- Vehicle Details -->
+        <h6>Vehicle Information</h6>
+        <p>
+          <strong>Vehicle No:</strong> {{ vehicle?.vehicleNo }}<br />
+          <!-- <strong>Vehicle Ratings:</strong> {{ vehicle.ratings }} / 5 <br /> -->
+           <strong>Vehicle:</strong> {{ vehicle?.vehicleModel }}<br />
+          <strong>Seating Capacity:</strong> {{ vehicle?.seating }}
+        </p>
+  
+        <!-- Book Ride Button -->
+        <button class="btn btn-success book-button" (click)="bookRide()" >Book Ride</button>
+      </div>
+    </div>
+  </div>
+  
+  <app-booking-form
+  *ngIf="showBookingForm"
+  [ride]="ride"
+  [riderId]="rider.userId"
+  [driverId]="driver.userId"
+  (closeForm)="showBookingForm = false"
+  (saveBooking)="handleSaveBooking($event)"
+></app-booking-form>
